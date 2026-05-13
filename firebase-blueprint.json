@@ -1,0 +1,26 @@
+{
+  "entities": {
+    "Reminder": {
+      "title": "Reminder",
+      "description": "A task or piece of information to be remembered.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The headline of the reminder." },
+        "description": { "type": "string", "description": "Details about the reminder." },
+        "completed": { "type": "boolean", "description": "Whether the reminder is done." },
+        "priority": { "type": "string", "enum": ["low", "medium", "high"], "description": "The urgency of the reminder." },
+        "dueDate": { "type": "string", "format": "date-time", "description": "When the reminder is due." },
+        "userId": { "type": "string", "description": "The identifier of the user who owns this reminder." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of creation." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Timestamp of last update." }
+      },
+      "required": ["title", "userId", "completed", "priority", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/reminders/{reminderId}": {
+      "schema": "Reminder",
+      "description": "User reminders collection."
+    }
+  }
+}
