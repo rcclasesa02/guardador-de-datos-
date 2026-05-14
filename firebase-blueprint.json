@@ -1,0 +1,25 @@
+{
+  "entities": {
+    "Exam": {
+      "title": "Exam",
+      "description": "A scheduled academic test or exam.",
+      "type": "object",
+      "properties": {
+        "subject": { "type": "string", "description": "The name of the course or subject." },
+        "date": { "type": "string", "format": "date", "description": "The date of the exam (YYYY-MM-DD)." },
+        "time": { "type": "string", "description": "The designated time for the exam." },
+        "location": { "type": "string", "description": "Where the exam takes place." },
+        "userId": { "type": "string", "description": "Owner of the record." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "color": { "type": "string", "description": "Hex or name for category identification." }
+      },
+      "required": ["subject", "date", "userId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/exams/{examId}": {
+      "schema": "Exam",
+      "description": "User scheduled exams."
+    }
+  }
+}

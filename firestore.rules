@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /_connection_test_/{docId} {
+      allow read: if true;
+    }
+
+    match /exams/{examId} {
+      // Use .get() to handle cases where userId might be missing in legacy docs
+      allow list: if request.auth != null && resource.data.get('userId', null) == request.auth.uid;
+      allow get: if request.auth != null && resource.data.get('userId', null) == request.auth.uid;
+      
+      allow create: if request.auth != null 
+        && request.resource.data.get('userId', null) == request.auth.uid;
+
+      allow update: if request.auth != null 
+        && resource.data.get('userId', null) == request.auth.uid
+        && request.resource.data.get('userId', null) == request.auth.uid;
+        
+      allow delete: if request.auth != null 
+        && resource.data.get('userId', null) == request.auth.uid;
+    }
+  }
+}

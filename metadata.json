@@ -1,0 +1,6 @@
+{
+  "name": "Exam Calendar",
+  "description": "Una aplicación para gestionar tus fechas de exámenes con vista de calendario y recordatorios inteligentes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
